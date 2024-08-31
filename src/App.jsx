@@ -2,13 +2,15 @@ import "./App.css";
 
 // Minesweeper Code
 let answer_board;
+let bool_board;
 let checked_zeros = [];
 let global_timer;
+let correctCells = 0;
 
 function table_gen(width, height) {
-  let empty_table = new Array(height).fill("O");
+  let empty_table = new Array(height).fill(false);
   for (let i = 0; i < height; i++) {
-    empty_table[i] = new Array(width).fill("O");
+    empty_table[i] = new Array(width).fill(false);
   }
   return empty_table;
 }
@@ -170,8 +172,14 @@ function revealButton(i, j) {
   }
   let curButton = answer_board[j][i];
 
-  if (answer_board[j][i] != "0")
+  if (curButton != "0" && curButton != "💣") {
+    if (!bool_board[j][i]) {
+      correctCells++;
+      bool_board[j][i] = true;
+    }
+
     document.getElementById(`b-${i}-${j}`).innerText = curButton;
+  }
   if (curButton == "💣") {
     alert("Game Over!");
     revealSolution();
@@ -197,6 +205,26 @@ function revealButton(i, j) {
     }
   }
   document.getElementById(`b-${i}-${j}`).setAttribute("disabled", true);
+  checkWin();
+}
+
+function checkWin() {
+  let numberOfBombs;
+  switch (answer_board[0].length) {
+    case 9:
+      numberOfBombs = 10;
+      break;
+    case 16:
+      numberOfBombs = 40;
+      break;
+    case 32:
+      numberOfBombs = 99;
+      break;
+  }
+  if (correctCells == answer_board.length*answer_board[0].length - numberOfBombs) {
+    clearInterval(global_timer);
+    alert("You win!");
+  }
 }
 
 function neighbor_zeros(i, j) {
@@ -211,6 +239,11 @@ function neighbor_zeros(i, j) {
       curCol <= Math.min(i + 1, answer_board[0].length - 1);
       curCol++
     ) {
+      if (!bool_board[curRow][curCol]) {
+        correctCells++;
+        bool_board[curRow][curCol] = true;
+      }
+
       if (curRow == j && curCol == i) continue;
       if (answer_board[curRow][curCol] == "0") {
         neighbors.push(`${curCol}-${curRow}`);
@@ -278,6 +311,7 @@ function afterButtonPress() {
     x.style.display = "inline-block";
   }
   checked_zeros = [];
+  correctCells = 0;
   setTimer();
 }
 
@@ -313,6 +347,8 @@ function difficultyButtons() {
 
                 document.getElementById("bombs-left").innerText =
                   "Bombs left: 10";
+                
+                bool_board = table_gen(9, 9);
                 afterButtonPress();
               }}
             >
@@ -331,12 +367,8 @@ function difficultyButtons() {
 
                 document.getElementById("bombs-left").innerText =
                   "Bombs left: 40";
-                setButtonEvent();
-                for (let x of document.getElementsByClassName("end-buttons")) {
-                  x.style.display = "inline-block";
-                }
-                checked_zeros = [];
-                setTimer();
+                bool_board = table_gen(16, 16);
+                afterButtonPress();
               }}
             >
               Normal
@@ -354,12 +386,8 @@ function difficultyButtons() {
 
                 document.getElementById("bombs-left").innerText =
                   "Bombs left: 99";
-                setButtonEvent();
-                for (let x of document.getElementsByClassName("end-buttons")) {
-                  x.style.display = "inline-block";
-                }
-                checked_zeros = [];
-                setTimer();
+                bool_board = table_gen(32, 16);
+                afterButtonPress();
               }}
             >
               Hard
@@ -388,7 +416,8 @@ function revealSolution() {
 function App() {
   return (
     <>
-      <p id="test"></p>
+    <center><p id="test"></p></center>
+      
       {difficultyButtons()}
       <center>
         <span>
