@@ -1,9 +1,26 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-createRoot(document.getElementById('root')).render(
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <div id="main">
+      <center>
+        <br />
+        <img
+          src="https://www.spigotmc.org/attachments/minesweeper-png.232077/"
+          alt="Minesweeper Logo"
+          width="500"
+          height="93"
+        />
+        <hr class="lines" />
+        <h2>Please select a difficulty below to proceed.</h2>
+      </center>
+      <App />
+    </div>
+  </StrictMode>
+);

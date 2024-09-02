@@ -10,7 +10,6 @@
   border: 1px solid #222222;
   border-radius: 8px;
   box-sizing: border-box;
-  color: #222222;
   cursor: pointer;
   display: inline-block;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
@@ -39,11 +38,9 @@
   transform: scale(0.96);
 }
 
-.ms-buttons:disabled {
+[data-clicked="true"] {
   border-color: #000000;
-  color: #000000;
-  background-color: #dbdbdb;
-  cursor: not-allowed;
+  background-color: #b3b3b3;
   opacity: 1;
 }
 
@@ -124,6 +121,11 @@
   z-index: 9;
   border: 0;
   transition: box-shadow 0.2s;
+}
+
+.lines {
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 #easy:hover {
