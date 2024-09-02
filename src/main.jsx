@@ -12,7 +12,7 @@ root.render(
       <center>
         <br />
         <img
-          src="https://www.spigotmc.org/attachments/minesweeper-png.232077/"
+          src="/ms-logo.png"
           alt="Minesweeper Logo"
           width="500"
           height="93"
