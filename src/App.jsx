@@ -9,6 +9,7 @@ let checked_zeros = [];
 let global_timer;
 let correctCells = 0;
 let winStatus = false;
+let flagMode = false;
 
 function table_gen(width, height) {
   let empty_table = new Array(height).fill(false);
@@ -181,6 +182,11 @@ function flagButton(i, j) {
 }
 
 function revealButton(i, j) {
+  if (flagMode) {
+    flagButton(i, j);
+    return;
+  }
+
   if (document.getElementById(`b-${i}-${j}`).innerText == "🚩") {
     let bombs_left = document.getElementById("bombs-left").innerText;
     document.getElementById("bombs-left").innerText =
@@ -319,6 +325,7 @@ function checkWin() {
     winStatus = true;
     clearInterval(global_timer);
     alert("You win!");
+    document.getElementById("flag-button").disabled = true;
   }
 }
 
@@ -380,6 +387,7 @@ function checkSolution() {
   if (correct_bomb == bomb_number) {
     clearInterval(global_timer);
     alert("You win!");
+    document.getElementById("flag-button").disabled = true;
   } else {
     alert("Some flags are misplaced!");
   }
@@ -400,6 +408,7 @@ function tableGeneration(ms_table) {
 
 function afterButtonPress() {
   document.getElementById("timer").innerText = "Timer: 00:00";
+  document.getElementById("flag-button").disabled = false;
   setButtonEvent();
   for (let x of document.getElementsByClassName("end-buttons")) {
     x.style.display = "inline-block";
@@ -407,6 +416,7 @@ function afterButtonPress() {
   checked_zeros = [];
   correctCells = 0;
   winStatus = false;
+  flagMode = false;
 
   for (let j = 0; j < answer_board.length; j++) {
     let zeroDetected = false;
@@ -511,6 +521,7 @@ function difficultyButtons() {
 function revealSolution() {
   clearInterval(global_timer);
   document.getElementById("timer").innerText = "Timer: N/A";
+  document.getElementById("flag-button").disabled = true;
   for (let j = 0; j < answer_board.length; j++) {
     for (let i = 0; i < answer_board[0].length; i++) {
       let cur = document.getElementById(`b-${i}-${j}`);
@@ -524,6 +535,15 @@ function revealSolution() {
         cur.style.backgroundColor = "#b3b3b3";
       }
     }
+  }
+}
+
+function changeMode() {
+  flagMode = !flagMode;
+  if (flagMode) {
+    document.getElementById("flag-button").innerText = "Enter Solve Mode";
+  } else {
+    document.getElementById("flag-button").innerText = "Enter Flag Mode";
   }
 }
 
@@ -542,6 +562,16 @@ function App() {
       <br />
       <div>
         <center>
+          <button
+            class="end-buttons"
+            id="flag-button"
+            onClick={() => {
+              changeMode();
+            }}
+          >
+            Enter Flag Mode
+          </button>
+          &nbsp; &nbsp;
           <button
             class="end-buttons"
             id="sol-button"

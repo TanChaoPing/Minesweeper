@@ -94,7 +94,6 @@
 
 .diff-buttons {
   background-color: initial;
-  background-image: linear-gradient(-180deg, #ff7e31, #e62c03);
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
   color: #ffffff;
@@ -108,7 +107,7 @@
   line-height: 40px;
   outline: 0;
   overflow: hidden;
-  padding: 0 20px;
+  padding: 0px;
   pointer-events: auto;
   position: relative;
   text-align: center;
@@ -117,7 +116,7 @@
   -webkit-user-select: none;
   vertical-align: top;
   white-space: nowrap;
-  width: 90px;
+  width: 100px;
   z-index: 9;
   border: 0;
   transition: box-shadow 0.2s;
@@ -134,6 +133,7 @@
 
 #easy {
   background-image: linear-gradient(-180deg, #6ce354, #2fab16);
+  border: 1px solid #1a8236;
 }
 
 #normal:hover {
@@ -141,7 +141,13 @@
 }
 
 #normal {
-  background-image: linear-gradient(-180deg, #edc953, #f5c945);
+  background-image: linear-gradient(-180deg, #edc953, #d1ab37);
+  border: 1px solid #9e9623;
+}
+
+#hard {
+  background-image: linear-gradient(-180deg, #ff7e31, #e62c03);
+  border: 1px solid #9e4223;
 }
 
 #hard:hover {
