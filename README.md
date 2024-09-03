@@ -6,7 +6,7 @@ A Minesweeper website made primarily using JavaScript, HTML, and CSS. The websit
 
 Minesweeper is a game where random number of bombs based on the difficulty chosen are placed in the board. The player must determine where the bombs are using the numbers in each cell as a clue. The number in each cell specifies how many bombs exist in its orthogonally and diagonally neighboring cells.
 
-On desktop, the player can *left click** to solve the cell or *right click* to flag the cell if they suspect the cell is a bomb. There is also an `Enter Flag Mode` button below the board that switches between **Flag Mode** and **Solve Mode** to accommodate mobile users since players cannot right click on a mobile device.
+On desktop, the player can **left click** to solve the cell or **right click** to flag the cell if they suspect the cell is a bomb. There is also an `Enter Flag Mode` button below the board that switches between **Flag Mode** and **Solve Mode** to accommodate mobile users since players cannot right click on a mobile device.
 
 Once all the non-bomb cells have been identified or cleared without clicking on a bomb, the player wins the Minesweeper game!
 
