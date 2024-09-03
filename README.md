@@ -1,8 +1,9 @@
-# React + Vite
+# Minesweeper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Minesweeper website made primarily using JavaScript, HTML, and CSS. The website includes 3 distinct Minesweeper difficulties ("Easy", "Normal", "Hard"), and each difficulty has different amount of bombs and different board size for the player to solve. Please do note that the game does not ensure a guaranteed win as there may be guessing included in each generated board.
 
-Currently, two official plugins are available:
+Make sure to first clone the repository using the `git clone https://github.com/TanChaoPing/Minesweeper` command to your local desktop if you want to give it a try.
+Once the repository has been cloned locally, make sure you have Vite installed by running the command `npm install`. This will install all the dependencies inside the Vite project.
+After the installation has been completed, the user can run the command `npm run dev` to run the website and play Minesweeper on their desktop locally.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Made by: Tan Chao Ping
