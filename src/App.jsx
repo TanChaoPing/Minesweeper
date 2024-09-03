@@ -186,7 +186,6 @@ function revealButton(i, j) {
     document.getElementById("bombs-left").innerText =
       "Flags left: " +
       (parseInt(bombs_left.slice(bombs_left.search(":") + 2)) + 1).toString();
-    document.getElementById(`b-${i}-${j}`).style.backgroundColor = "";
   }
 
   if (document.getElementById(`b-${i}-${j}`).innerText == "🟢")
